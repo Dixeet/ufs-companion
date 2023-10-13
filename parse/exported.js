@@ -89,7 +89,7 @@ async function copyFiles(exportRootPath) {
       copyFile(file.path, resolve(extractPath, `baits/${file.name}.prefab`)),
     );
   }
-  for (const file of fishesAndBaitsFiles.baitsFiles) {
+  for (const file of fishesAndBaitsFiles.fishesFiles) {
     copies.push(
       copyFile(file.path, resolve(extractPath, `fishes/${file.name}.prefab`)),
     );
