@@ -1,18 +1,12 @@
 import { readdir, copyFile, unlink } from 'node:fs/promises';
-import { fileURLToPath, URL } from 'node:url';
 import { resolve, basename } from 'node:path';
 
-const extractPath = resolve(
-  fileURLToPath(new URL('.', import.meta.url)),
-  'extract/',
-);
-
-export async function copyExportedFiles(exportRootPath) {
-  await cleanFiles();
-  return copyFiles(exportRootPath);
+export async function copyExportedFiles(exportRootPath, extractPath) {
+  await cleanFiles(extractPath);
+  return copyFiles(exportRootPath, extractPath);
 }
 
-export async function cleanFiles() {
+export async function cleanFiles(extractPath) {
   const excludedFiles = (file) =>
     file !== 'baits' && file !== 'fishes' && file !== '.gitkeep';
   const [extractFiles, baitsFiles, fishesFiles] = await Promise.all([
@@ -70,7 +64,7 @@ async function getFishesAndBaitsFiles(exportRootPath) {
   };
 }
 
-async function copyFiles(exportRootPath) {
+async function copyFiles(exportRootPath, extractPath) {
   const mainMenuPath = resolve(
     exportRootPath,
     'ExportedProject/Assets/FishingGame/Scenes/MainMenu.unity',
