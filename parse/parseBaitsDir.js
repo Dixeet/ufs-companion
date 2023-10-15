@@ -4,7 +4,6 @@ import { findOne } from './regexHelper.js';
 
 export default async function parseBaitsDir(extractPath) {
   const dirFiles = await readdir(resolve(extractPath, 'baits'));
-  // const dirFiles = ['BombaCrank_01.prefab'];
   const files = dirFiles.filter((fileName) => fileName !== '.gitkeep');
   const baits = [];
   const handleFiles = files.map((fileName) =>

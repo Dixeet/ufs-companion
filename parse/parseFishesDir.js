@@ -48,7 +48,7 @@ function findWeights(data) {
     [weights.minWeight, weights.maxWeight] = findOne(
       /(?<=WeightMinMax:\s?)\S.*/g,
       data,
-    ).match(/\d+/g);
+    ).match(/(\d|\.)+/g);
   } catch (e) {
     /* empty */
   }
