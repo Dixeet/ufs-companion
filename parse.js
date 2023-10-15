@@ -6,7 +6,7 @@ import cli from './parse/cli.js';
 import { copyExportedFiles, cleanFiles } from './parse/exported.js';
 import generate from './parse/generate.js';
 
-console.time('exec');
+console.time('execution time');
 const { argv, output } = cli();
 const extractPath = resolve(
   fileURLToPath(new URL('.', import.meta.url)),
@@ -27,5 +27,5 @@ if (argv?.help) {
   await generate(generatePath, extractPath);
 }
 const used = process.memoryUsage().heapUsed / 1024 / 1024;
-console.timeEnd('exec');
-console.log(`~ ${Math.round(used * 100) / 100} MB used`);
+console.timeEnd('execution time');
+console.log(`~${Math.round(used * 100) / 100} MB used`);
