@@ -25,7 +25,25 @@ function findId(data) {
 }
 
 function findBaitType(data) {
-  return findOne(/(?<=\s*baitType:\s).*/g, data);
+  /*
+   "baitType": null, Appâts EQUIPMENT/BAITS
+   "baitType": "1", Cuilleres tournantes, EQUIPMENT/SPINNERS
+   "baitType": "2", Cuilleres ondulantes, EQUIPMENT/SPOON
+   "baitType": "3", Wobblers, EQUIPMENT/WOBBLERS
+   "baitType": "4", Leurres souples, EQUIPMENT/SOFT_BAITS
+   "baitType": "5", Mouches, EQUIPMENT/FLIES
+   */
+  const baitTypes = [
+    'EQUIPMENT/BAITS',
+    'EQUIPMENT/SPINNERS',
+    'EQUIPMENT/SPOON',
+    'EQUIPMENT/WOBBLERS',
+    'EQUIPMENT/SOFT_BAITS',
+    'EQUIPMENT/FLIES',
+  ];
+  const type = findOne(/(?<=\s*baitType:\s).*/g, data);
+  const baitType = type ? baitTypes[parseInt(type)] : baitTypes[0];
+  return baitType;
 }
 
 function findSpecies(data) {

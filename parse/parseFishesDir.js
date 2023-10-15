@@ -76,7 +76,40 @@ function findRain(data) {
 }
 
 function findSpinningMethods(data) {
-  return data.match(/(?<=spinningMethodFactor:\s?\n( {2}- \d\n)*( {2}- ))\d*/g);
+  /*
+  "spinningMethods": [
+    "0",
+    "0", Tirer lentement, HUD/SPINNING_STRAIGHT_SLOW
+    "0", Tirer, HUD/SPINNING_STRAIGHT
+    "0",
+    "0", Lift & Drop, HUD/SPINNING_LIFT_DROP
+    "0", Stop & Go, HUD/SPINNING_STOP_GO
+    "1" Twitching, HUD/SPINNING_TWITCHING
+  ]
+   */
+  const spinningMethods = [
+    '',
+    'HUD/SPINNING_STRAIGHT_SLOW',
+    'HUD/SPINNING_STRAIGHT',
+    '',
+    'HUD/SPINNING_LIFT_DROP',
+    'HUD/SPINNING_STOP_GO',
+    'HUD/SPINNING_TWITCHING',
+  ];
+  const methods = data.match(
+    /(?<=spinningMethodFactor:\s?\n( {2}- (?:\d|\.)*\n)*( {2}- ))(?:\d|\.)*/g,
+  );
+  if (methods) {
+    const fishSpinningMethods = [];
+    methods.forEach((method, index) => {
+      if (parseFloat(method) >= 0.7) {
+        fishSpinningMethods.push(spinningMethods[index]);
+      }
+    });
+    return fishSpinningMethods;
+  } else {
+    return null;
+  }
 }
 
 function getTimesValues(str) {

@@ -19,9 +19,24 @@ export default async function parseI2Languages(
 }
 
 async function fillFishesInfos(fishes, data) {
+  const spinningMethods = {
+    'HUD/SPINNING_STRAIGHT_SLOW': null,
+    'HUD/SPINNING_STRAIGHT': null,
+    'HUD/SPINNING_LIFT_DROP': null,
+    'HUD/SPINNING_STOP_GO': null,
+    'HUD/SPINNING_TWITCHING': null,
+  };
+  for (const method in spinningMethods) {
+    spinningMethods[method] = findTrad(method, data);
+  }
   for (const fish of fishes) {
     fish.name = findTrad(fish.name, data) || fish.name;
     fish.description = findTrad(fish.description, data) || fish.description;
+    if (fish.spinningMethods?.length) {
+      fish.spinningMethods.forEach((method, index) => {
+        fish.spinningMethods[index] = spinningMethods[method];
+      });
+    }
   }
 }
 
@@ -41,6 +56,17 @@ async function fillFisheriesInfos(fisheries, data) {
 }
 
 async function fillBaitsInfos(baits, data) {
+  const baitTypes = {
+    'EQUIPMENT/BAITS': null,
+    'EQUIPMENT/SPINNERS': null,
+    'EQUIPMENT/SPOON': null,
+    'EQUIPMENT/WOBBLERS': null,
+    'EQUIPMENT/SOFT_BAITS': null,
+    'EQUIPMENT/FLIES': null,
+  };
+  for (const type in baitTypes) {
+    baitTypes[type] = findTrad(type, data);
+  }
   for (const bait of baits) {
     if (bait.equipmentTranslateName) {
       bait.name = findTrad(bait.equipmentTranslateName, data) || {
@@ -55,6 +81,9 @@ async function fillBaitsInfos(baits, data) {
     }
     delete bait.equipmentName;
     delete bait.equipmentTranslateName;
+    if (bait.baitType) {
+      bait.baitTypeName = baitTypes[bait.baitType];
+    }
   }
 }
 
