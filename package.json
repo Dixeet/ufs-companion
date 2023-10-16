@@ -47,12 +47,17 @@
     "singleQuote": true
   },
   "nodemonConfig": {
-    "ignore": ["public/data/*.json"]
+    "ignore": [
+      "public/data/*.json"
+    ]
   },
   "dependencies": {
     "command-line-args": "^5.2.1",
     "command-line-usage": "^7.0.1",
-    "vue": "^3.3.4"
+    "sass": "^1.69.3",
+    "vite-plugin-vuetify": "^1.0.2",
+    "vue": "^3.3.4",
+    "vuetify": "^3.3.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
@@ -61,6 +66,8 @@
     "eslint-plugin-vue": "^9.17.0",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-vue-components": "^0.25.2",
     "vite": "^4.4.5"
   }
 }
