@@ -20,6 +20,9 @@ export default defineConfig({
       imports: ['vue'],
       dts: true,
       resolvers: [],
+      eslintrc: {
+        enabled: true,
+      },
     }),
   ],
 
