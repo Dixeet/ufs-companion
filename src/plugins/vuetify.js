@@ -1,5 +1,3 @@
-import 'vuetify/styles';
-import '~/assets/styles/main.scss';
 import { createVuetify } from 'vuetify';
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg';
 
@@ -16,21 +14,28 @@ export default createVuetify({
     themes: {
       dark: {
         colors: {
-          primary: '#3499f3',
-          secondary: '#424242',
-          tertiary: '#84bfef',
-          accent: '#FF4081',
-          background: '#121212',
-          surface: '#212121',
-          'surface-bright': '#474747',
-          'surface-variant': '#a3a3a3',
-          'on-surface-variant': '#424242',
-          'primary-darken-1': '#3700B3',
-          'secondary-darken-1': '#03DAC5',
-          error: '#CF6679',
-          info: '#2196F3',
-          success: '#4CAF50',
-          warning: '#FB8C00',
+          primary: '#5d4200',
+          'primary-variant': '#f5be48',
+          secondary: '#53452a',
+          'secondary-variant': '#d9c4a0',
+          tertiary: '#344d2f',
+          'tertiary-variant': '#b2cfa8',
+          background: '#1e1b16',
+          surface: '#282419',
+          'surface-variant': '#372f1c',
+          error: '#93000a',
+          'error-variant': '#ffb4ab',
+          'on-primary': '#ffdea4',
+          'on-primary-variant': '#412d00',
+          'on-secondary': '#f6e0bb',
+          'on-secondary-variant': '#3b2f15',
+          'on-tertiary': '#cdebc2',
+          'on-tertiary-variant': '#1e361a',
+          'on-background': '#e9e1d9',
+          'on-surface': '#e9e1d9',
+          'on-surface-variant': '#e9e1d9',
+          'on-error': '#ffdad6',
+          'on-error-variant': '#690005',
         },
         variables: {
           'border-color': '#FFFFFF',
