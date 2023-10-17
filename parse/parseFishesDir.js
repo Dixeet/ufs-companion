@@ -20,7 +20,9 @@ export default async function parseFishesDir(extractPath) {
           rain: findRain(data),
           spinningMethods: findSpinningMethods(data),
         };
-        fishes.push(fish);
+        if (fish.id && fishes.findIndex((f) => f.id === fish.id) === -1) {
+          fishes.push(fish);
+        }
       },
     ),
   );
