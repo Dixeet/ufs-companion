@@ -35,7 +35,7 @@ async function findFisheries(data) {
     for (const fisheryStr of fisheriesFound) {
       const id = parseInt(findOne(/(?<=fisheryId:\s).*/g, fisheryStr));
       const fakeFishery = findOne(/leaderboardName: TODO/g, fisheryStr);
-      if (id && id >= 0 && !fakeFishery) {
+      if (id !== undefined && id !== null && id >= 0 && !fakeFishery) {
         const fishery = {
           id,
           name: findOne(/(?<=name:\s).*/g, fisheryStr),
