@@ -10,18 +10,8 @@
 </template>
 
 <script setup>
-const appFishery = useStorage(
-  'appFishery',
-  {
-    name: {
-      en: 'Choose a fishery',
-      fr: 'Choisir une pêcherie',
-    },
-  },
-  undefined,
-  { shallow: true },
-);
-const appLanguage = useStorage('appLanguage', 'en');
+const appFishery = useState('appFishery');
+const appLanguage = useState('appLanguage');
 const { state: fisheries } = useQueryDb((db) => db.fisheries.toArray(), []);
 
 const itemTitle = computed(() => `name.${appLanguage.value}`);

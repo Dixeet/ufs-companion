@@ -25,7 +25,7 @@
 
 <script setup>
 const languages = ['en', 'fr'];
-const appLanguage = useStorage('appLanguage', 'en');
+const appLanguage = useState('appLanguage');
 </script>
 
 <style lang="scss">
