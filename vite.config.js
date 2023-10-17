@@ -14,12 +14,16 @@ export default defineConfig({
     Components({
       dirs: ['src/components', 'src/layouts'],
       dts: true,
-      resolvers: [],
     }),
     AutoImport({
-      imports: ['vue'],
+      imports: [
+        'vue',
+        {
+          '@vueuse/core': ['useStorage'],
+        },
+      ],
+      dirs: ['./src/composables/**'],
       dts: true,
-      resolvers: [],
       eslintrc: {
         enabled: true,
       },

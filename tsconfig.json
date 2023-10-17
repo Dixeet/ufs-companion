@@ -4,6 +4,9 @@
     "paths": {
       "~/*": ["./src/*"]
     },
-    "include": ["./components.d.ts"]
+    "include": [
+      "./components.d.ts",
+      "./auto-imports.d.ts"
+    ]
   }
 }

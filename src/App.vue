@@ -1,9 +1,7 @@
 <template>
-  <v-layout>
-    <v-container>
-      <v-main>Test</v-main>
-    </v-container>
-  </v-layout>
+  <TheLayout>
+    <div>Test</div>
+  </TheLayout>
 </template>
 
 <script setup></script>
