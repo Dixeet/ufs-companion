@@ -21,7 +21,9 @@ export default async function parseBaitsDir(extractPath) {
 }
 
 function findId(data) {
-  return findOne(/(?<=\s*m_RootGameObject:\s?{fileID:\s).*(?=})/g, data);
+  return parseInt(
+    findOne(/(?<=\s*m_RootGameObject:\s?{fileID:\s).*(?=})/g, data),
+  );
 }
 
 function findBaitType(data) {
@@ -60,7 +62,7 @@ function findSpecies(data) {
       for (const index in speciesInterests) {
         if (!(index % 2)) {
           if (parseFloat(speciesInterests[parseInt(index) + 1]) >= 0.7) {
-            species.push(speciesInterests[index]);
+            species.push(parseInt(speciesInterests[index]));
           }
         }
       }

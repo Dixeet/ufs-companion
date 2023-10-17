@@ -18,7 +18,7 @@ async function extendBaitsInfos(baits, data) {
       data,
     );
     if (dataBait) {
-      bait.price = findOne(/(?<=price: ).*/g, dataBait);
+      bait.price = parseFloat(findOne(/(?<=price: ).*/g, dataBait));
       bait.equipmentName = findOne(/(?<=equipmentName: ).*/g, dataBait);
       bait.equipmentTranslateName = findOne(
         /(?<=equipmentTranslateName: ).*/g,
@@ -33,9 +33,9 @@ async function findFisheries(data) {
   const fisheriesFound = data.match(/\s{2}- unitySceneName(?:.*\n\s{3,}.*)*/g);
   if (fisheriesFound?.length) {
     for (const fisheryStr of fisheriesFound) {
-      const id = findOne(/(?<=fisheryId:\s).*/g, fisheryStr);
+      const id = parseInt(findOne(/(?<=fisheryId:\s).*/g, fisheryStr));
       const fakeFishery = findOne(/leaderboardName: TODO/g, fisheryStr);
-      if (id && parseInt(id) >= 0 && !fakeFishery) {
+      if (id && id >= 0 && !fakeFishery) {
         const fishery = {
           id,
           name: findOne(/(?<=name:\s).*/g, fisheryStr),

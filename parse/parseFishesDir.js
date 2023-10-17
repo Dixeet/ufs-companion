@@ -29,7 +29,7 @@ export default async function parseFishesDir(extractPath) {
 }
 
 function findId(data) {
-  return findOne(/(?<=species:\s?)\S\d*/g, data);
+  return parseInt(findOne(/(?<=species:\s?)\S\d*/g, data));
 }
 
 function findName(data) {
@@ -42,13 +42,15 @@ function findDescription(data) {
 
 function findWeights(data) {
   const weights = {
-    weight: findOne(/(?<=Weight:\s?)\S\d*/g, data),
+    weight: parseFloat(findOne(/(?<=Weight:\s?)\S\d*/g, data)),
   };
   try {
-    [weights.minWeight, weights.maxWeight] = findOne(
+    const [minWeight, maxWeight] = findOne(
       /(?<=WeightMinMax:\s?)\S.*/g,
       data,
     ).match(/(\d|\.)+/g);
+    weights.minWeight = parseFloat(minWeight);
+    weights.maxWeight = parseFloat(maxWeight);
   } catch (e) {
     /* empty */
   }
@@ -119,7 +121,9 @@ function getTimesValues(str) {
     if (timesValues?.length) {
       for (const index in timesValues) {
         if (!(index % 2) && index !== '8') {
-          res[timesValues[index]] = timesValues[parseInt(index) + 1];
+          res[timesValues[index]] = parseFloat(
+            timesValues[parseInt(index) + 1],
+          );
         }
       }
     }
