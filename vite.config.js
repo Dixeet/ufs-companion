@@ -4,6 +4,7 @@ import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
 import AutoImport from 'unplugin-auto-import/vite';
 import vuetify from 'vite-plugin-vuetify';
+import Icons from 'unplugin-icons/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,6 +12,9 @@ export default defineConfig({
     splitVendorChunkPlugin(),
     vue(),
     vuetify({ autoImport: true }),
+    Icons({
+      compiler: 'vue3',
+    }),
     Components({
       dirs: ['src/components', 'src/layouts'],
       dts: true,
