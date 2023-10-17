@@ -1,9 +1,7 @@
 <template>
   <v-layout>
     <v-navigation-drawer>
-      <v-list>
-        <v-list-item title="Navigation drawer"></v-list-item>
-      </v-list>
+      <TheFisherySelector />
 
       <template #append>
         <div class="d-flex justify-space-between align-center">
