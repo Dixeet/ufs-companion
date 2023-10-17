@@ -6,9 +6,18 @@
       </v-list>
 
       <template #append>
-        <v-btn rounded="0" color="secondary" @click="deleteDatabase"
-          >Delete Db</v-btn
-        >
+        <div class="d-flex justify-space-between align-center">
+          <v-btn
+            variant="plain"
+            icon="$dbOff"
+            color="primary-variant"
+            @click="deleteDatabase"
+          ></v-btn>
+          <v-spacer />
+          <div>
+            <TheLanguageSelector />
+          </div>
+        </div>
       </template>
     </v-navigation-drawer>
 
