@@ -15,6 +15,7 @@ const appFishery = useState('appFishery');
 const lang = useState('appLanguage');
 const { state: fisheries } = useQueryDb((db) => db.fisheries.toArray(), []);
 const db = useDb();
+const transitionKey = useState('transitionKey');
 
 const itemTitle = computed(() => `name.${lang.value}`);
 
@@ -49,6 +50,7 @@ async function update(fishery) {
     }
   }
   appFishery.value = fishery;
+  transitionKey.value = Date.now();
 }
 </script>
 

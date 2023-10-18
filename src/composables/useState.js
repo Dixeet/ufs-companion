@@ -11,6 +11,7 @@ const state = {
     undefined,
     { shallow: true },
   ),
+  transitionKey: ref(Date.now()),
 };
 
 export function useState(key, defaultValue, options) {

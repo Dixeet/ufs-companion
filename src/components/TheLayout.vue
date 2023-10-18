@@ -37,13 +37,17 @@
 
     <v-container>
       <v-main>
-        <slot></slot>
+        <Transition name="fade" mode="out-in">
+          <slot :key="transitionKey"></slot>
+        </Transition>
       </v-main>
     </v-container>
   </v-layout>
 </template>
 
 <script setup>
+const transitionKey = useState('transitionKey');
+
 const database = inject('database');
 const drawer = shallowRef(undefined);
 
