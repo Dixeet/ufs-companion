@@ -122,7 +122,7 @@ function getTimesValues(str) {
     const timesValues = str.match(/(?<=(time|value):\s).*/g);
     if (timesValues?.length) {
       for (const index in timesValues) {
-        if (!(index % 2) && index !== '8') {
+        if (!(index % 2)) {
           res[timesValues[index]] = parseFloat(
             timesValues[parseInt(index) + 1],
           );
