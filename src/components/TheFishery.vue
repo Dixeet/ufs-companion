@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <h1 class="text-h4 no-content">{{ appFishery.name[lang] }}</h1>
+    <h1 class="text-h4 no-content">{{ title }}</h1>
     <v-divider
       class="border-opacity-50"
       color="primary-variant"
@@ -10,7 +10,7 @@
       <v-card
         v-if="appFishery.description"
         color="surface-variant"
-        :text="appFishery.description[lang]"
+        :text="description"
       ></v-card>
     </div>
     <div class="v-row">
@@ -33,6 +33,8 @@ const appFishery = useState('appFishery');
 const db = useDb();
 
 const fishes = shallowRef([]);
+const title = useTranslation(appFishery.value.name);
+const description = useTranslation(appFishery.value.description);
 
 watchEffect(async () => {
   if (appFishery.value?.species) {
