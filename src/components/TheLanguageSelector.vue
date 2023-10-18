@@ -26,6 +26,10 @@
 <script setup>
 const languages = ['en', 'fr'];
 const appLanguage = useState('appLanguage');
+
+watchEffect(() => {
+  document.documentElement.setAttribute('lang', appLanguage.value);
+});
 </script>
 
 <style lang="scss">
