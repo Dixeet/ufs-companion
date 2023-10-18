@@ -21,9 +21,7 @@
 
     <v-container>
       <v-main>
-        <Transition>
-          <slot></slot>
-        </Transition>
+        <slot></slot>
       </v-main>
     </v-container>
   </v-layout>

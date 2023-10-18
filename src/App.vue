@@ -1,9 +1,11 @@
 <template>
   <TheLayout>
-    <div>Test</div>
+    <TheFishery></TheFishery>
   </TheLayout>
 </template>
 
-<script setup></script>
+<script setup>
+import TheFishery from '~/components/TheFishery.vue';
+</script>
 
 <style></style>

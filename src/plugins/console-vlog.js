@@ -8,48 +8,33 @@ export default {
   },
 };
 
-function vueLog(exp, trace = false) {
-  if (isRef(exp)) {
-    let count = 0;
-    let initiator = null;
-    watchEffect(() => {
-      if (trace) {
-        try {
-          throw new Error();
-        } catch (e) {
-          for (const line of e.stack.split('\n')) {
-            const matches = line.match(/(?<=\s+at setup.*\()(.*)(?=\))/);
-            if (matches) {
-              initiator = matches[0];
-            }
-          }
-          console.log(initiator);
-        }
+function vueLog(exp, ...args) {
+  let count = 0;
+  let initiator = null;
+  try {
+    throw new Error();
+  } catch (e) {
+    for (const line of e.stack.split('\n')) {
+      const matches = line.match(/(?<=\s+at setup \()(.*)(?=\))/);
+      if (matches) {
+        initiator = matches[0];
       }
-      console.log(`Ref(${count}):`, toValue(exp));
-      count++;
-    });
-  } else if (isProxy(exp)) {
-    let count = 0;
-    let initiator = null;
-    watchEffect(() => {
-      if (trace) {
-        try {
-          throw new Error();
-        } catch (e) {
-          for (const line of e.stack.split('\n')) {
-            const matches = line.match(/(?<=\s+at setup.*\()(.*)(?=\))/);
-            if (matches) {
-              initiator = matches[0];
-            }
-          }
-          console.log(initiator);
-        }
-      }
-      console.log(`Proxy(${count}):`, toRaw(exp));
-      count++;
-    });
-  } else {
-    console.log(exp);
+    }
+    if (isRef(exp)) {
+      watchEffect(() => {
+        console.log(`Ref(${count}):`, `${initiator}\n  `, toValue(exp));
+        count++;
+      });
+    } else if (isProxy(exp)) {
+      watchEffect(() => {
+        console.log(`Proxy(${count}):`, `${initiator}\n  `, toRaw(exp));
+        count++;
+      });
+    } else {
+      console.log(`${typeof exp}:`, `${initiator}\n  `, exp);
+    }
+  }
+  if (args?.length) {
+    console.vlog(...args);
   }
 }
