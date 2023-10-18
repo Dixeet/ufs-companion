@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <v-navigation-drawer>
+    <v-navigation-drawer v-model="drawer">
       <TheFisherySelector />
 
       <template #append>
@@ -18,6 +18,22 @@
         </div>
       </template>
     </v-navigation-drawer>
+    <v-btn
+      alt="Open Drawer"
+      class="d-lg-none drawer__toggle"
+      :class="{
+        'drawer__toggle--open': !drawer,
+        'drawer__toggle--close': drawer,
+      }"
+      color="primary-variant"
+      density="compact"
+      variant="tonal"
+      rounded="0"
+      icon
+      @click.stop="drawer = !drawer"
+    >
+      <v-icon :icon="drawer ? '$menuLeft' : '$menuRight'" />
+    </v-btn>
 
     <v-container>
       <v-main>
@@ -29,6 +45,7 @@
 
 <script setup>
 const database = inject('database');
+const drawer = shallowRef(undefined);
 
 function deleteDatabase() {
   if (database?.name) {
@@ -46,4 +63,20 @@ function deleteDatabase() {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.drawer__toggle {
+  position: fixed !important;
+  top: 50%;
+  z-index: 1004;
+  width: 12px !important;
+  &--open {
+    left: 0;
+  }
+  &--close {
+    left: 256px;
+  }
+}
+.v-layout .v-navigation-drawer__scrim {
+  position: fixed;
+}
+</style>
