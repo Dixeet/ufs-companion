@@ -54,4 +54,14 @@ async function update(fishery) {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.v-overlay-container {
+  .v-overlay__content.v-autocomplete__content {
+    .v-list-item.v-list-item--active {
+      .v-autocomplete__mask {
+        background: rgb(var(--v-theme-secondary));
+      }
+    }
+  }
+}
+</style>
