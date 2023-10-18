@@ -16,7 +16,7 @@ export default createVuetify({
   theme: {
     defaultTheme: 'dark',
     variations: {
-      colors: ['error', 'tertiary-variant'],
+      colors: ['error', 'surface'],
       lighten: 2,
       darken: 1,
     },

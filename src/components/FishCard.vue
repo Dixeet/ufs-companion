@@ -7,15 +7,16 @@
     </template>
     <div class="px-4">
       <v-divider
-        class="border-opacity-50"
+        class="border-opacity-50 mb-2"
         color="primary-variant"
         thickness="1"
       />
-      <div class="d-flex justify-space-between align-center my-2">
+      <div class="d-flex justify-space-between align-center mb-2 px-2">
         <v-icon :color="getIconColor('cloud')" icon="$cloud" />
         <v-icon :color="getIconColor('wind')" icon="$wind" />
         <v-icon :color="getIconColor('rain')" icon="$rain" />
       </div>
+      <TimeHeatMap class="mb-2" :time="fish.time"></TimeHeatMap>
     </div>
     <v-expansion-panels variant="accordion">
       <v-expansion-panel :title="baitsLabel" rounded="0" elevation="1">
@@ -55,12 +56,12 @@ const luresLabel = useTranslation('luresLabel');
 
 function getIconColor(condition) {
   if (props.fish[condition][0] > 0.5 && props.fish[condition][1] > 0.5) {
-    return 'tertiary-variant-darken-1';
+    return 'light-green-darken-2';
   } else if (
     props.fish[condition][0] > 0.5 &&
     props.fish[condition][1] <= 0.5
   ) {
-    return 'secondary';
+    return 'surface-lighten-1';
   } else {
     return 'secondary';
   }
