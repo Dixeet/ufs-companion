@@ -5,7 +5,12 @@
         {{ title }}
       </div>
     </template>
-    <div class="px-4">
+    <template #subtitle>
+      <div class="text-body-4">
+        {{ subtitle }}
+      </div>
+    </template>
+    <div class="px-4 mt-n2">
       <v-divider
         class="border-opacity-50 mb-2"
         color="primary-variant"
@@ -53,6 +58,9 @@ const description = useTranslation(props.fish.description);
 const descriptionLabel = useTranslation('descriptionLabel');
 const baitsLabel = useTranslation('baitsLabel');
 const luresLabel = useTranslation('luresLabel');
+const subtitle = computed(
+  () => `${props.fish.minWeight}kg - ${props.fish.maxWeight}kg`,
+);
 
 function getIconColor(condition) {
   if (props.fish[condition][0] > 0.5 && props.fish[condition][1] > 0.5) {
