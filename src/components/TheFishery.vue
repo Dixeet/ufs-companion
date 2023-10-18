@@ -17,11 +17,9 @@
       <div
         v-for="(fish, index) in fishes"
         :key="index"
-        class="v-col-12 v-col-sm-4 v-col-md-3 v-col-xl-2"
+        class="v-col-12 v-col-sm-6 v-col-md-4 v-col-xl-3"
       >
-        <div>
-          {{ fish.name[lang] }}
-        </div>
+        <FishCard class="" :fish="fish"></FishCard>
       </div>
     </div>
   </div>
