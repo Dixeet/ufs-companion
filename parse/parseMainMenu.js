@@ -4,11 +4,68 @@ import { findOne } from './regexHelper.js';
 
 export default async function parseMainMenu(extractPath, baits) {
   const file = await readFile(resolve(extractPath, 'MainMenu.unity'), 'utf-8');
-  const [fisheries] = await Promise.all([
+  const [toFishWeight, fisheries] = await Promise.all([
+    findToFishWeight(file),
     findFisheries(file),
     extendBaitsInfos(baits, file),
   ]);
-  return fisheries;
+  return { toFishWeight, fisheries };
+}
+
+async function findToFishWeight(data) {
+  return [
+    {
+      id: 'hookToFishWeight',
+      sizes: findHookSizes(data, 'hookToFishWeight'),
+    },
+    {
+      id: 'lureToFishWeight',
+      sizes: findHookSizes(data, 'lureToFishWeight'),
+    },
+    {
+      id: 'flyToFishWeight',
+      sizes: findHookSizes(data, 'flyToFishWeight'),
+    },
+  ];
+}
+
+function findHookSizes(data, type) {
+  const sizes = [
+    '#12',
+    '#8',
+    '#6',
+    '#4',
+    '#2',
+    '#1',
+    '#1/0',
+    '#2/0',
+    '#3/0',
+    '#4/0',
+    '#5/0',
+    '#6/0',
+    '#7/0',
+    '#8/0',
+    '#9/0',
+    '#10/0',
+    '#11/0',
+    '#12/0',
+  ];
+  const rawSizes = data.match(
+    new RegExp('(?<=' + type + ':\\n(  -.*\\n)*(  -.*))(?:\\d|\\.)+', 'g'),
+  );
+  const hookSizes = [];
+  if (rawSizes.length) {
+    for (const index in rawSizes) {
+      if (!(index % 2)) {
+        hookSizes.push({
+          size: sizes[index / 2],
+          min: parseFloat(rawSizes[index]),
+          max: parseFloat(rawSizes[parseInt(index) + 1]),
+        });
+      }
+    }
+  }
+  return hookSizes;
 }
 
 async function extendBaitsInfos(baits, data) {

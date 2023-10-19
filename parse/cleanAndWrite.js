@@ -6,6 +6,7 @@ export default async function cleanAndWrite(generatePath, data) {
     fishes: 'fishes.json',
     baits: 'baits.json',
     fisheries: 'fisheries.json',
+    toFishWeight: 'toFishWeight.json',
   };
   await cleanFiles(generatePath, fileNames);
   return Promise.all(

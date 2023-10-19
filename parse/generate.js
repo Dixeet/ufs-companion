@@ -11,9 +11,9 @@ export default async function generate(generatePath, extractPath) {
     parseFishesDir(extractPath),
     parseBaitsDir(extractPath),
   ]);
-  const fisheries = await parseMainMenu(extractPath, baits);
+  const { fisheries, toFishWeight } = await parseMainMenu(extractPath, baits);
   console.log('Generating...');
   await parseI2Languages(extractPath, fishes, baits, fisheries);
   console.log('Writing...');
-  await cleanAndWrite(generatePath, { fishes, baits, fisheries });
+  await cleanAndWrite(generatePath, { fishes, baits, fisheries, toFishWeight });
 }

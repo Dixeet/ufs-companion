@@ -5,6 +5,7 @@ const dataToFetch = [
   { file: 'baits', table: 'baits' },
   { file: 'fisheries', table: 'fisheries' },
   { file: 'fishes', table: 'fishes' },
+  { file: 'toFishWeight', table: 'toFishWeight' },
 ];
 
 export default {
@@ -32,6 +33,13 @@ function migrate(db) {
     fishes: 'id,name.en,name.fr',
     baitsFishes: '++,baitId,fishId',
   });
+  db.version(2)
+    .stores({
+      toFishWeight: 'id',
+    })
+    .upgrade(() => {
+      return useDeleteDbData(dataToFetch);
+    });
   /*
   To refresh with new data,
   use code below and increment VERSION_NUMBER according to the previous one
