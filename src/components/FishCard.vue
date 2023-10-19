@@ -24,14 +24,24 @@
       <TimeHeatMap class="mb-2" :time="fish.time"></TimeHeatMap>
     </div>
     <v-expansion-panels variant="accordion">
-      <v-expansion-panel :title="baitsLabel" rounded="0" elevation="1">
+      <v-expansion-panel
+        :disabled="!fish.baits?.length"
+        :title="baitsLabel"
+        rounded="0"
+        elevation="1"
+      >
         <template #text>
-          <div>Test</div>
+          <BaitsTable :baits="fish.baits" paginator sortable></BaitsTable>
         </template>
       </v-expansion-panel>
-      <v-expansion-panel :title="luresLabel" rounded="0" elevation="1">
+      <v-expansion-panel
+        :disabled="!fish.lures?.length"
+        :title="luresLabel"
+        rounded="0"
+        elevation="1"
+      >
         <template #text>
-          <div>Test</div>
+          <BaitsTable :baits="fish.lures" paginator sortable></BaitsTable>
         </template>
       </v-expansion-panel>
       <v-expansion-panel

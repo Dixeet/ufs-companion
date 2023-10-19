@@ -5,6 +5,7 @@ import dbOff from '~icons/mdi/database-off';
 import web from '~icons/mdi/web';
 import menuRight from '~icons/mdi/menuRight';
 import menuLeft from '~icons/mdi/menuLeft';
+import arrowDown from '~icons/mdi/arrow-down';
 
 export default {
   cloud,
@@ -14,4 +15,5 @@ export default {
   web,
   menuRight,
   menuLeft,
+  arrowDown,
 };

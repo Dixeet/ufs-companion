@@ -5,6 +5,7 @@
     :items="fisheries"
     base-color="primary-variant"
     color="primary-variant"
+    hide-details
     return-object
     @update:model-value="update"
   ></v-autocomplete>
@@ -44,7 +45,7 @@ async function update(fishery) {
     if (index > -1) {
       if (dbBaits[index].baitType === 'EQUIPMENT/BAITS') {
         fishery.baits.push({ ...dbBaits[index], count: lBaits[id] });
-      } else {
+      } else if (dbBaits[index].baitType) {
         fishery.lures.push({ ...dbBaits[index], count: lBaits[id] });
       }
     }

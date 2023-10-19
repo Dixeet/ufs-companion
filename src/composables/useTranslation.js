@@ -11,6 +11,22 @@ const i18n = {
     en: 'Lures',
     fr: 'Leurres',
   },
+  nameLabel: {
+    en: 'Name',
+    fr: 'Nom',
+  },
+  countLabel: {
+    en: 'Count',
+    fr: 'Nombre',
+  },
+  topBaits: {
+    en: 'Top Baits',
+    fr: 'Top Appâts',
+  },
+  topLures: {
+    en: 'Top Lures',
+    fr: 'Top Leurres',
+  },
 };
 
 const lang = useState('appLanguage');

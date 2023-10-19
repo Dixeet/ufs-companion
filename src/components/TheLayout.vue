@@ -1,11 +1,37 @@
 <template>
   <v-layout>
-    <v-navigation-drawer v-model="drawer">
+    <v-navigation-drawer v-model="drawer" width="275">
       <TheFisherySelector />
+      <Transition name="fade" mode="out-in">
+        <div :key="transitionKey">
+          <div v-if="appFishery?.baits?.length">
+            <div
+              class="text-subtitle-1 text-primary-variant-lighten-1 px-4 mt-2"
+            >
+              {{ topBaits }}
+            </div>
+            <BaitsTable :baits="appFishery.baits" max="4"></BaitsTable>
+          </div>
+          <div v-if="appFishery?.lures?.length">
+            <v-divider
+              class="border-opacity-50 my-2"
+              color="primary-variant"
+              thickness="1"
+            />
+            <div
+              class="text-subtitle-1 text-primary-variant-lighten-1 px-4 mt-2"
+            >
+              {{ topLures }}
+            </div>
+            <BaitsTable :baits="appFishery.lures" max="4"></BaitsTable>
+          </div>
+        </div>
+      </Transition>
 
       <template #append>
         <div class="d-flex justify-space-between align-center">
           <v-btn
+            v-if="isDev"
             variant="plain"
             icon="$dbOff"
             color="primary-variant"
@@ -46,7 +72,13 @@
 </template>
 
 <script setup>
+const isDev = shallowRef(import.meta.env.MODE === 'development');
+
+const appFishery = useState('appFishery');
 const transitionKey = useState('transitionKey');
+
+const topBaits = useTranslation('topBaits');
+const topLures = useTranslation('topLures');
 
 const database = inject('database');
 const drawer = shallowRef(undefined);
@@ -77,7 +109,7 @@ function deleteDatabase() {
     left: 0;
   }
   &--close {
-    left: 256px;
+    left: 276px;
   }
 }
 .v-layout .v-navigation-drawer__scrim {
