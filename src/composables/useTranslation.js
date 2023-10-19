@@ -19,6 +19,10 @@ const i18n = {
     en: 'Count',
     fr: 'Nombre',
   },
+  sizeLabel: {
+    en: 'Size',
+    fr: 'Taille',
+  },
   topBaits: {
     en: 'Top Baits',
     fr: 'Top Appâts',
@@ -26,6 +30,18 @@ const i18n = {
   topLures: {
     en: 'Top Lures',
     fr: 'Top Leurres',
+  },
+  hookSizeLabel: {
+    en: 'Hook Sizes',
+    fr: 'Tailles Hameçon',
+  },
+  lureSizeLabel: {
+    en: 'Lure Sizes',
+    fr: 'Tailles Leurre',
+  },
+  flySizeLabel: {
+    en: 'Fly Sizes',
+    fr: 'Tailles Mouches',
   },
 };
 
