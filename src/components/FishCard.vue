@@ -21,7 +21,23 @@
         <v-icon :color="getIconColor('wind')" icon="$wind" />
         <v-icon :color="getIconColor('rain')" icon="$rain" />
       </div>
-      <TimeHeatMap class="mb-2" :time="fish.time"></TimeHeatMap>
+      <TimeHeatMap class="mb-4" :time="fish.time"></TimeHeatMap>
+      <div
+        class="d-flex justify-space-between flex-wrap mb-2"
+        style="gap: 0 5px"
+      >
+        <div
+          v-for="(spin, index) in spinningMethods"
+          :key="`spin-${index}`"
+          class="text-body-4"
+          :class="{
+            'text-secondary-variant-darken-1': index % 2,
+            'text-secondary-variant': !(index % 2),
+          }"
+        >
+          {{ spin }}
+        </div>
+      </div>
     </div>
     <v-expansion-panels variant="accordion">
       <v-expansion-panel
@@ -71,6 +87,13 @@ const luresLabel = useTranslation('luresLabel');
 const subtitle = computed(
   () => `${props.fish.minWeight}kg - ${props.fish.maxWeight}kg`,
 );
+
+const spinningMethods = computed(() => {
+  return (
+    props.fish.spinningMethods &&
+    props.fish.spinningMethods.map((spin) => useTranslation(spin).value)
+  );
+});
 
 function getIconColor(condition) {
   if (props.fish[condition][0] > 0.5 && props.fish[condition][1] > 0.5) {
