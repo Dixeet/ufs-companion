@@ -12,7 +12,9 @@ export default async function parseMainMenu(extractPath, baits) {
 }
 
 async function extendBaitsInfos(baits, data) {
-  for (const bait of baits) {
+  const baitsToDelete = [];
+  for (const index in baits) {
+    const bait = baits[index];
     const dataBait = findOne(
       new RegExp(bait.id + '[\\s\\S]*?(?= *description)', 'g'),
       data,
@@ -24,7 +26,14 @@ async function extendBaitsInfos(baits, data) {
         /(?<=equipmentTranslateName: ).*/g,
         dataBait,
       );
+    } else {
+      baitsToDelete.push(index);
     }
+  }
+  let deletedCount = 0;
+  for (const index of baitsToDelete) {
+    baits.splice(index - deletedCount, 1);
+    deletedCount++;
   }
 }
 
