@@ -5,34 +5,36 @@
         <tr>
           <th class="text-left">
             <div class="d-inline-flex align-center">
-              {{ nameLabel }}
               <v-btn
                 v-if="sortable"
+                class="mr-1"
                 variant="text"
                 :color="
                   sortedBy === 'name' ? 'primary-variant' : 'surface-lighten-1'
                 "
-                icon="$arrowDown"
+                icon="$sort"
                 density="comfortable"
                 size="small"
                 @click.stop="sortBy('name')"
               ></v-btn>
+              {{ nameLabel }}
             </div>
           </th>
           <th class="text-center">
             <div class="d-inline-flex align-center">
-              {{ countLabel }}
               <v-btn
                 v-if="sortable"
+                class="mr-1"
                 variant="text"
                 :color="
                   sortedBy === 'count' ? 'primary-variant' : 'surface-lighten-1'
                 "
-                icon="$arrowDown"
+                icon="$sort"
                 density="comfortable"
                 size="small"
                 @click.stop="sortBy('count')"
               ></v-btn>
+              {{ countLabel }}
             </div>
           </th>
         </tr>
@@ -40,11 +42,12 @@
       <tbody>
         <tr v-for="bait in baits" :key="bait.id">
           <td>
-            {{ bait.name }}
-            <br />
-            <v-chip class="mb-1" density="comfortable" size="small">
+            <div class="text-body-1">
+              {{ bait.name }}
+            </div>
+            <div class="text-body-4 text-disabled mt-n1 mb-1">
               {{ bait.baitTypeName }}
-            </v-chip>
+            </div>
           </td>
           <td class="text-center">{{ bait.count }}</td>
         </tr>
@@ -92,6 +95,7 @@ const baits = computed(() =>
   baitsList.value.slice(props.max * (page.value - 1), props.max * page.value),
 );
 
+let order = 1;
 const sortedBy = shallowRef('count');
 
 watchEffect(() => {
@@ -110,14 +114,19 @@ watchEffect(() => {
 function sortedByCountFn(a, b) {
   const res = b.count - a.count;
   if (res) {
-    return res;
+    return res * order;
   }
-  return a.name.localeCompare(b.name);
+  return a.name.localeCompare(b.name) * order;
 }
 
 function sortBy(by) {
+  if (sortedBy.value === by) {
+    order = order * -1;
+  } else {
+    order = 1;
+  }
   if (by === 'name') {
-    baitsList.value.sort((a, b) => a.name.localeCompare(b.name));
+    baitsList.value.sort((a, b) => a.name.localeCompare(b.name) * order);
   } else {
     baitsList.value.sort(sortedByCountFn);
   }

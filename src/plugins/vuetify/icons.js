@@ -6,6 +6,7 @@ import web from '~icons/mdi/web';
 import menuRight from '~icons/mdi/menuRight';
 import menuLeft from '~icons/mdi/menuLeft';
 import arrowDown from '~icons/mdi/arrow-down';
+import sort from '~icons/mdi/sort';
 
 export default {
   cloud,
@@ -16,4 +17,5 @@ export default {
   menuRight,
   menuLeft,
   arrowDown,
+  sort,
 };
