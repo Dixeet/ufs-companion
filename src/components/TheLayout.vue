@@ -27,7 +27,11 @@
                   >
                     {{ topBaits }}
                   </div>
-                  <BaitsTable :baits="appFishery.baits" max="4"></BaitsTable>
+                  <BaitsTable
+                    :baits="appFishery.baits"
+                    max="5"
+                    paginator
+                  ></BaitsTable>
                 </div>
                 <div v-if="appFishery?.lures?.length">
                   <v-divider
@@ -40,7 +44,11 @@
                   >
                     {{ topLures }}
                   </div>
-                  <BaitsTable :baits="appFishery.lures" max="4"></BaitsTable>
+                  <BaitsTable
+                    :baits="appFishery.lures"
+                    max="5"
+                    paginator
+                  ></BaitsTable>
                 </div>
               </div>
             </Transition>
