@@ -62,7 +62,6 @@
       <template #append>
         <div class="d-flex justify-space-between align-center">
           <v-btn
-            v-if="isDev"
             variant="plain"
             icon="$dbOff"
             color="primary-variant"
@@ -104,8 +103,6 @@
 
 <script setup>
 import SizesTable from '~/components/SizesTable.vue';
-
-const isDev = shallowRef(import.meta.env.MODE === 'development');
 
 const appFishery = useState('appFishery');
 const transitionKey = useState('transitionKey');

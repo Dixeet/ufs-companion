@@ -68,5 +68,6 @@ export function useDeleteDbData(dataToFetch, tx = db) {
     });
     return Promise.all(promises);
   }
+  localStorage.clear();
   return Promise.resolve();
 }
